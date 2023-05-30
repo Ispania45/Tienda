@@ -1,0 +1,258 @@
+{% extends 'Store\layouts\main.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="home" id="Nosotros">
+        <div class="content">
+            <h3>Lo que necesites para tu verdadera pasion</h3>
+            <p>Nos especializamos en juego de estrategia ludica, contamos con tecnología de punta con nuestras
+                marcadoras velcro, Airsoft y Láser.
+                Permitiendo una recreación de los escenarios de juego similares a los de una guerra real. </p>
+        </div>
+</section>
+
+<div class='box-container1' id="Categorias">
+    <div class='row '>
+        <div class='col-md-13'>
+            <h1 class="heading">Nuestras<span>Categorias</span></h1>
+            <hr>
+            <div class='row m-lg-auto overflow-hidden' style="width: 85%; margin-left: 30px;">
+                {% for item in category %}
+                <div class='col-md-2'>
+                    <div class='card' style="background: none;">
+                        <a href="{% url 'collectionsview' item.slug %}">
+                            <div class='box'>
+                                <div class='category-image'>
+                                    <img src='{{item.image.url}}' alt='Category Image' class=" rounded-circle w-100" />
+                                </div>
+                                <div class="text-name" style="text-transform: uppercase;">
+                                    <h3>{{ item.name }}</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="blogs" id="Blogs">
+    <h1 class="heading">Proximos<span>Eventos</span></h1>
+    <div class="box-container">
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/f1.jpg' %}" alt="" width="200px">
+            </div>
+            <div class="content">
+                <p>Se viene nuevamente un evento MilSIM en pirque toda la informacion abajo en
+                    el link. </p>
+                <a href="https://www.bfl.cl/" class="btn">Saber mas</a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/f3.jpg' %}" alt="" width="200px">
+            </div>
+            <div class="content">
+                <p>Proximamente un un evento de equipos, durante todo el findesemana en fuerte bulnes,
+                    informacion e inscripciones en el link de abajo. </p>
+                <a href="http://www.tlairsoft.cl/" class="btn">Saber mas</a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/f4.jpg ' %}" alt="" width="200px">
+            </div>
+            <div class="content">
+                <p>Fin de semana de novatos, explicacion y capacitacion de equipos,
+                    si eres nuevo y quieres aprender !!no te lo pierdas¡¡
+                </p>
+                <a href="https://www.geopark.cl/airsoft//" class="btn">Saber mas</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container my-2" id="Destacados" >
+        <div class='row '>
+            <div class='col-md-12'>
+                <h1 class=" heading">Productos<span>Destacados</span></h1>
+    <hr>
+    <div class='row owl-carousel owl-theme'>
+        {% for item in trending_products %}
+        <div class='product_data item' style="width: 80%; margin-left: 40px;">
+            <div class='card'>
+                <div class='card-body'>
+                    <a href="{% url 'productview' item.category.slug item.slug %}">
+                        <div class='category-image'>
+                            <img src='{{item.product_image.url}}' style="display: flex;" alt='Product Image'
+                                class="w-100" />
+                        </div>
+                        <h3 class="text-center text-black"> {{ item.name }}</h3>
+                    </a>
+                    <span style="font-size: 18px; margin-left: 110px;"
+                        class="text-center">${{ item.selling_price | stringformat:'d' }}</span>
+                    <br>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mt-4">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ item.id }}" class="prod_id">
+                            <div class="input-group text-center">
+                                <button class="input-group-text changeQuantity decrement-btn"
+                                    style="height: 45px; font-size: 40px;">-</button>
+                                <input type="text" value="1" name='quantity' id="cantidad"
+                                    class="form-control qty-input text-center"
+                                    style="height: 45px; font-size: 25px;"></input>
+                                <button class="input-group-text changeQuantity increment-btn"
+                                    style="height: 45px; font-size: 30px;">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-0">
+                            <span class="mb-2">
+                                {% if item.quantity > 0 %}
+                                <button type="button" class="btn btn-primary btn-sm me-3 addToCartBtn">Añadir al
+                                    carrito <i class="fa fa-shopping-cart"></i></button>
+                                {% else %}
+                                <button type="button" class="btn btn-danger badge ">Sin Stock <i
+                                        class="fa fa-shopping-cart"></i></button>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<section class="review" id="review">
+    <h1 class="heading"> Opinion de <span>nuestros usuarios</span> </h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="{% static 'images/cita.png' %}" alt="" class="quote">
+            <p>Excelente trato con los clientes, nos ayudaron debido a que eramos nuevos y nos capacitaron para usar
+                cada uno de sus accesorios </p>
+            <img src="{% static 'images/face1.jpg' %}" alt="" class="user">
+            <h3>Roronoa Zoro</h3>
+            <div class="stars">
+                <i class="{% static 'fas fa-star' %}"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/cita.png' %}" alt="" class="quote">
+            <p>Realmente aprecio la conveniencia de comprar en esta tienda de airsoft en línea. El sitio web es
+                fácil de navegar y cuenta con una gran variedad de productos de alta calidad a
+                precios muy competitivos. Además, el servicio al cliente fue excepcional.</p>
+            <img src="{% static 'images/face2.jpg' %}" alt="" class="user">
+            <h3>Natalia Aguirre</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/cita.png' %}" alt="" class="quote">
+            <p>Tuve algunas preguntas sobre los productos y recibí respuestas rápidas y útiles por parte del equipo
+                de soporte en línea.
+                Mi pedido llegó a tiempo y en perfectas condiciones. Definitivamente recomiendo esta tienda en línea
+                a cualquier persona
+                que busque productos de airsoft de calidad y una experiencia de compra en línea sin complicaciones.
+            </p>
+            <img src="{% static 'images/face3.jpg' %}" alt="" class="user">
+            <h3>Vicente Urrutia</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="About">
+    <h1 class="heading"> <span>Noso</span>tros </h1>
+
+    <div class="row">
+        <div class="image">
+            <img src="{% static 'images/2.jpg' %}" alt="">
+        </div>
+        <div class="content">
+            <h3>Que hace a nuestra tienda tan especial?</h3>
+            <p>Misión:
+                <br>
+                Nuestra tienda de airsoft tiene como misión ofrecer a nuestros clientes productos de alta calidad, duraderos y seguros para la práctica de este deporte. Nos esforzamos por brindar un excelente servicio al cliente y asesoramiento para ayudar
+                a los jugadores a encontrar el equipo adecuado para sus necesidades y presupuesto. Además, buscamos fomentar el respeto por las reglas del juego y la seguridad en todas las actividades relacionadas con el airsoft. </p>
+                <hr>
+            <p>Visión:
+                <br>
+                Nuestra visión es convertirnos en la tienda líder en la venta de equipos de airsoft en nuestra región. Queremos ser reconocidos por nuestra amplia gama de productos,
+                precios competitivos y excelente servicio al cliente. Además, nos esforzamos por apoyar y promover la práctica responsable y segura del airsoft en nuestra comunidad.</p>
+        </div>
+    </div>
+</section>
+
+<section class="footer footer-distributed w-100" style="width: 100%;">
+    <div class="footer-left">
+        <p class="footer-links">
+            <a href="#Categorias">Productos </a>
+            |
+            <a href="#Destacados">Promociones </a>
+            |
+            <a href="#Blogs">Eventos</a>
+        </p>
+        <p class="footer-company-name">Creado por <strong>Grupo 2 Portafolio</strong> | Todos los derechos reservados</p>     
+    </div>
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Av.esquina blanca 261</span>
+                Maipu, Santiago</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+56 9 6653 9989</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="#">mundoairsoft20@gmail.com'</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>Acerca de la tienda</span>
+            <strong>MundoAirsoft</strong> es una tienda de artículos deportivos que marca tendencias, que ofrece productos de primera calidad y servicio personalizado al cliente.
+        </p>
+        <div class="footer-icons">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+    </div>
+</footer>
+
+{% endblock content %}

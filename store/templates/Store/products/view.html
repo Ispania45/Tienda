@@ -1,0 +1,135 @@
+{% extends 'C:\Users\geral\Desktop\respaldo\MundoAirsoft\store\templates\Store\layouts\main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="py-3" style="background-color: black; margin-top: 20px;">
+        <div class="container"">
+                <a class=" text-white" style="font-size: 17px; text-decoration: none; " href="{% url 'home' %}"> Home /</a>
+            <a class="text-white" style="font-size: 17px; text-decoration: none;"
+                href="{% url 'collectionsview' products.category.slug %}"> {{products.category.name}} /</a>
+            <a class="text-white" style="font-size: 17px; text-decoration: none;"
+                href="{% url 'productview' products.category.slug products.slug %}"> {{products.name}} </a>
+        </div>
+    </div>
+
+
+
+    <!-- content -->
+    <section class="py-5 bg-white w-75 m-lg-auto product_data" style="margin-left: 40px; margin-top: 20px;">
+        <div class="container">
+            <div class="row gx-5">
+                <aside class="col-lg-6 product_data">
+                    <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                        <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
+                            href="#">
+                            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
+                                src="{{ products.product_image.url }}" />
+                        </a>
+                    </div>
+                    <!-- thumbs-wrap.// -->
+                    <!-- gallery-wrap .end// -->
+                </aside>
+                <main class="col-lg-6">
+                    <div class="ps-lg-3">
+                        <h2 class="title text-dark">
+                            {{ products.name }} <br />
+                        </h2>
+                        {% if products.trending %}
+                        <label style="font-size: 16px;" class="float-end badge bg-danger trending_tag">
+                            Trending </label>
+                        {% endif %}
+                        <div class="d-flex flex-row my-3">
+                            {% if products.quantity > 0 %}
+                                <label style="font-size: 16px;" class="badge bg-success">Stock</label>
+                                {% else %}
+                                <label style="font-size: 16px;" class="badge bg-danger">Sin stock</label>
+                            {% endif%}
+                        </div>
+
+                        <div class="mb-3">
+                            <span class="h3">Precio: $
+                                {{ products.selling_price | stringformat:'d' }} C/U</span>
+                        </div>
+                        <P style="font-size: 13px;">
+                            {{ products.small_description }}
+                        </P>
+                        <hr>
+
+                        <p style="font-size: 13px;">
+                            {{ products.description }}
+                        </p>
+
+
+                        <div class="row mb-4">
+                            <!-- col.// -->
+                            <div class="col-md-2">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ products.id }}" class="prod_id">
+                                <label style="font-size: 20px;" for="Quantity">Cantidad</label>
+                                <div class="input-group">
+                                    <button class="input-group-text changeQuantity decrement-btn" style="height: 45px; font-size: 40px; width: 25px;">-</button>
+                                    <input type="text" value="1" name='quantity' id="cantidad" class="form-control qty-input text-center" style="height: 45px; font-size: 20px; width: 20px;"></input>
+                                    <button class="input-group-text changeQuantity increment-btn" style="height: 45px; font-size: 30px; width: 25px;">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <br />
+                            {% if products.quantity > 0 %}
+                                <button type="button" class="btn btn-primary me-3 float-start addToCartBtn">Añadir al carrito <i class="fa fa-shopping-cart"></i></button>
+                            {% endif %}
+                            <button type="button"
+                                class="btn btn-success me-3 addToWishlist float-start "><i
+                                    class="fa fa-heart"></i></button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="footer footer-distributed w-100" style="width: 100%;">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{% url 'home' %}">Productos </a>
+                |
+                <a href="{% url 'home' %}">Promociones </a>
+                |
+                <a href="{% url 'home' %}">Eventos</a>
+            </p>
+            <p class="footer-company-name">Creado por <strong>Grupo 2 Portafolio</strong> | Todos los derechos reservados</p>     
+        </div>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Av.esquina blanca 261</span>
+                    Maipu, Santiago</p>
+            </div>
+    
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+56 9 6653 9989</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="#">mundoairsoft20@gmail.com'</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Acerca de la tienda</span>
+                <strong>MundoAirsoft</strong> es una tienda de artículos deportivos que marca tendencias, que ofrece productos de primera calidad y servicio personalizado al cliente.
+            </p>
+            <div class="footer-icons">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+                <a href="#" class="fab fa-pinterest"></a>
+            </div>
+        </div>
+    </footer>
+{% endblock content %}

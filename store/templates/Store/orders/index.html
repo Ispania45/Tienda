@@ -1,0 +1,96 @@
+{% extends 'C:\Users\geral\Desktop\respaldo\MundoAirsoft\store\templates\Store\layouts\main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="py-3" style="background-color: black;">
+        <div class="container"">
+            <a class="text-white" style="font-size: 17px; text-decoration: none; " href="{% url 'home' %}"> Home /</a>
+            <a class="text-white" style="font-size: 17px; text-decoration: none;" href="{% url 'myorders' %}"> Mis pedidos /</a>
+            
+        </div>
+    </div>
+    <div class="container my-3">     
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h2 class="mb-0 text-center"> Mis pedidos</h2>
+                    </div
+
+                    <div class="card-body">
+                        <table class='table table-bordered text-center'>
+                            <thead>
+                                <tr>
+                                    <th class="h2">Fecha de pedido</th>
+                                    <th class="h2">Numero de rastreo</th>
+                                    <th class="h2">Precio total</th>
+                                    <th class="h2">Estado</th>
+                                    <th class="h2">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in orders %}
+                                    <tr class="h4">
+                                        <td> {{ item.created_at }} </td>
+                                        <td> {{ item.tracking_no }} </td>
+                                        <td> $ {{ item.total_price | stringformat:'d' }} </td>
+                                        <td><small class="badge bg-success"> {{ item.status }}</small></td>
+                                        <td>
+                                            <a href="{% url 'orderview' item.tracking_no %}" class="btn btn-primary">Ver</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>          
+    
+
+    
+
+    <section class="footer footer-distributed w-100" style="width: 100%;">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{% url 'home' %}">Productos </a>
+                |
+                <a href="{% url 'home' %}">Promociones </a>
+                |
+                <a href="{% url 'home' %}">Eventos</a>
+            </p>
+            <p class="footer-company-name">Creado por <strong>Grupo 2 Portafolio</strong> | Todos los derechos reservados</p>     
+        </div>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Av.esquina blanca 261</span>
+                    Maipu, Santiago</p>
+            </div>
+    
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+56 9 6653 9989</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="#">mundoairsoft20@gmail.com'</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Acerca de la tienda</span>
+                <strong>MundoAirsoft</strong> es una tienda de artículos deportivos que marca tendencias, que ofrece productos de primera calidad y servicio personalizado al cliente.
+            </p>
+            <div class="footer-icons">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+                <a href="#" class="fab fa-pinterest"></a>
+            </div>
+        </div>
+    </footer>
+    {% endblock content %}

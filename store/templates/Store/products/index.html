@@ -1,0 +1,94 @@
+{% extends 'C:\Users\geral\Desktop\respaldo\MundoAirsoft\store\templates\Store\layouts\main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="py-3" style="background-color: black;">
+        <div class="container"">
+            <a class=" text-white" style="font-size: 17px; text-decoration: none; " href="{% url 'home' %}"> Home /</a>
+            <a class="text-white" style="font-size: 17px; text-decoration: none;"
+                href="{% url 'collectionsview' category.slug %}"> {{category.name}} </a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class='container mt-4 d-flex mb-5 bg-gradient product_data'>
+        <div class='row '>
+            <h1> {{ category_name.name }} </h1>
+            <hr>
+            {% for item in products %}
+            <div class='col-md-4 mt-5 '>
+                <hr>
+                {% csrf_token %}
+                <input type="hidden" value="{{ products.id }}" class="prod_id">
+                <div class=' border border-dark card w-75' style="margin-left: 40px;">
+                    <a href="{% url 'productview' item.category.slug item.slug %}">
+                        <div class='product-grid'>
+                            <div class='category-image'>
+                                <img src='{{item.product_image.url}}' style="display: flex;" alt='Product Image'
+                                    class="w-100" />
+                            </div>
+                            <h2 style="font-size: 20px;" class="card-title text-center">{{ item.name }}</h2>
+                            <p style="font-size: 20px;" class="card-text mr-4 text-success text-center">
+                                ${{ item.original_price | stringformat:'d'}} c/u</p>
+                        </div>
+                    </a>
+                    <hr>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <P style="font-size: 13px;">{{ products.small_description }}</P>
+    </div>
+
+
+
+
+    <section class="footer footer-distributed w-100" style="width: 100%;">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="{% url 'home' %}">Productos </a>
+                |
+                <a href="{% url 'home' %}">Promociones </a>
+                |
+                <a href="{% url 'home' %}">Eventos</a>
+            </p>
+            <p class="footer-company-name">Creado por <strong>Grupo 2 Portafolio</strong> | Todos los derechos reservados</p>     
+        </div>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Av.esquina blanca 261</span>
+                    Maipu, Santiago</p>
+            </div>
+    
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+56 9 6653 9989</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="#">mundoairsoft20@gmail.com'</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Acerca de la tienda</span>
+                <strong>MundoAirsoft</strong> es una tienda de artículos deportivos que marca tendencias, que ofrece productos de primera calidad y servicio personalizado al cliente.
+            </p>
+            <div class="footer-icons">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+                <a href="#" class="fab fa-pinterest"></a>
+            </div>
+        </div>
+    </footer>
+{% endblock content %}

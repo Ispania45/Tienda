@@ -1,0 +1,153 @@
+{% extends 'C:\Users\geral\Desktop\respaldo\MundoAirsoft\store\templates\Store\layouts\main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<section class="pt-5 pb-5 bg-light w-75 m-lg-auto" style="margin-left: 50px; margin-top: 20px;">
+    <div class="container">
+        <div class="row w-100">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h3 class="display-5 mb-2 text-center">Carro de compras</h3>
+                <table id="shoppingCart" class="table table-condensed table-responsive">
+                    <div class="py-5" style="background-color: #fff;">
+                        <div class='container'>
+                            <div class='row '>
+                                <div class='col-md-12'>
+                                    <div class="card shadow ">
+                                        <div class="card_body cartdata">
+                                            {% if cart %}
+                                            {% for item in cart %}
+                                            <div class="product_data card rounded-3 mb-4">
+                                                <div class="card-body p-4 border border-dark rounded">
+                                                    <div class="row d-flex justify-content-between align-items-center ">
+                                                        <div class="col-md-2 col-lg-2 col-xl-2">
+                                                            <img src="{{ item.product.product_image.url }}"
+                                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                        </div>
+                                                        <div class="col-sm-3 my-auto ">
+                                                            <h5>{{ item.product.name }}</h5>
+                                                        </div>
+                                                        <div class="col-sm-2 my-auto ">
+                                                            <h5> $ {{ item.product.selling_price | stringformat:'d' }}
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-md-3 my-auto">
+                                                            <input type="hidden" class="prod_id"
+                                                                value="{{ item.product_id }}">
+                                                            {% csrf_token %}
+                                                            {% if item.product.quantity >= item.product_qty %}
+                                                            <label for="Quantity"
+                                                                style="font-size: 16px; margin-right: 15px;">Cantidad</label>
+                                                            <div class="input-group text-center mb-3"
+                                                                style="width: 130px;">
+                                                                <button
+                                                                    class="btn btn-primary px-3 me-2 changeQuantity decrement-btn text-center"><i
+                                                                        class="fas fa-minus"></i></button>
+                                                                <input type="number" value="{{ item.product_qty }}"
+                                                                    name='quantity' id="form1"
+                                                                    class="form-control qty-input text-center"
+                                                                    style=" font-size: 15px; height: 55px;"></input>
+                                                                <button
+                                                                    class="btn btn-primary px-3 ms-2 changeQuantity increment-btn text-center|"><i
+                                                                        class="fas fa-plus"></i></button>
+                                                            </div>
+                                                            {% else %}
+                                                            <h6>Sin stock</h6>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-md-2 my-auto">
+                                                            <button class="btn btn-danger delete-cart-item"><i
+                                                                    class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            <div class="card border border-dark rounded">
+                                                <div class="card-body ">
+                                                    <a href="{% url 'checkout' %}" type="button"
+                                                        class=" float-end btn btn-warning btn-block btn-lg"
+                                                        style="width: 180px;">Finalizar compra </a>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="container-fluid  mt-100 ">
+                                                <div class="row w-100">
+                                                    <div class="col-md-12">
+                                                        <div class="card">
+                                                            <div class="card-body cartdata">
+                                                                <div class="col-sm-12 empty-cart-cls text-center">
+                                                                    <img src="https://i.imgur.com/dCdflKN.png"
+                                                                        width="130" height="130"
+                                                                        class="img-fluid mb-4 mr-3">
+                                                                    <h3><strong>Tu carro esta vacio</strong></h3>
+                                                                    <h4>Agrega algo para hacernos felices :)</h4>
+                                                                    <a href="{% url 'home' %}"
+                                                                        class="btn btn-primary cart-btn-transform m-3"
+                                                                        data-abc="true">continue shopping</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        </div>                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="footer footer-distributed w-100" style="width: 100%;">
+    <div class="footer-left">
+        <p class="footer-links">
+            <a href="{% url 'home' %}">Productos </a>
+            |
+            <a href="{% url 'home' %}">Promociones </a>
+            |
+            <a href="{% url 'home' %}">Eventos</a>
+        </p>
+        <p class="footer-company-name">Creado por <strong>Grupo 2 Portafolio</strong> | Todos los derechos reservados</p>     
+    </div>
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Av.esquina blanca 261</span>
+                Maipu, Santiago</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+56 9 6653 9989</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="#">mundoairsoft20@gmail.com'</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>Acerca de la tienda</span>
+            <strong>MundoAirsoft</strong> es una tienda de artículos deportivos que marca tendencias, que ofrece productos de primera calidad y servicio personalizado al cliente.
+        </p>
+        <div class="footer-icons">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+    </div>
+</footer>
+{% endblock content %}

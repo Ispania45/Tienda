@@ -1,0 +1,210 @@
+.checkoutform label {
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.checkoutform input {
+    font-size: 14px !important;
+}
+
+.whatsapp-chat {
+    position: fixed;
+    bottom: 05% !important;
+    left: 05% !important;
+}
+
+.search-bar {
+    width: 25% !important;
+    margin-right: 160px;
+
+}
+
+@media (max-width:991px) {
+    .search-bar {
+        width: 55% !important;
+        height: 40px !important;
+        margin-bottom: 40px;
+
+
+    }
+
+}
+
+.text-name2 {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    bottom: 5px;
+    text-align: center;
+    line-height: 25px;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 180px 20px;
+}
+
+.text-price {
+    font-size: 20px;
+    color: #333;
+    line-height: 90px;
+    bottom: 5px;
+}
+
+#menuBurger {
+    width: 45px;
+}
+
+
+/*  ------------------------------------CARRO VACIO ------------------------------*/
+
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+body {
+    background-color: #eee;
+    font-family: 'Calibri', sans-serif !important;
+}
+
+.mt-100 {
+    margin-top: 100px;
+
+}
+
+
+.card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+    box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+}
+
+.card .card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+
+
+.card .card-body {
+    padding: 30px;
+    background-color: transparent;
+}
+
+.btn-primary,
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #4466f2 !important;
+    border-color: #4466f2 !important;
+}
+
+
+
+/*  ------------------------------------BOTON AGREGAR CARRO ------------------------------*/
+
+
+body {
+    background-color: #eee
+}
+
+.container {
+    position: relative
+}
+
+.center {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.buttons {
+    padding: 10px;
+    background-color: #d6d4d4;
+    border-radius: 8px;
+    position: relative
+}
+
+.dot {
+    height: 14px;
+    width: 14px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    left: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    color: #fff;
+    opacity: 0
+}
+
+.cart-button {
+    height: 48px
+}
+
+.cart-button:focus {
+    box-shadow: none
+}
+
+.cart {
+    position: relative;
+    height: 48px !important;
+    width: 50px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 11px;
+    border-radius: 5px;
+    font-size: 21px
+}
+
+.cart-button.clicked span.dot {
+    animation: item 0.3s ease-in forwards
+}
+
+@keyframes item {
+    0% {
+        opacity: 1;
+        top: 30%;
+        left: 30%
+    }
+
+    25% {
+        opacity: 1;
+        left: 26%;
+        top: 0%
+    }
+
+    50% {
+        opacity: 1;
+        left: 23%;
+        top: -22%
+    }
+
+    75% {
+        opacity: 1;
+        left: 19%;
+        top: -18%
+    }
+
+    100% {
+        opacity: 1;
+        left: 14%;
+        top: 28%
+    }
+}
+

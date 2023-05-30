@@ -1,0 +1,92 @@
+{% extends 'Store\layouts\main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="" >
+                            <div class="container text-center">
+                                <a class="navbar-brand" href="{% url 'home' %}">
+                                    <img class="w-75" src="{% static 'images/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>                       
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p class="text-white-50 mb-5 h2">Por favor ingresa tu usuario y contraseña</p>
+                                <div class="form-group form-outline form-white mb-4">
+                                    <label class="h3" for="">Usuario :</label>
+                                    <input type="text" class="form-control form-control-lg" style="font-size: 16px;" name="username"
+                                        placeholder="Ingrese el usuario">
+                                </div>
+                                <div class="form-group form-outline form-white mb-4">
+                                    <label class="h3" for="">Ingresa tu contraseña :</label>
+                                    <input type="password" class="form-control form-control-lg" style="font-size: 16px;" name="password"
+                                        placeholder="Ingrese la contraseña">
+                                </div>
+                                <p class=" h4 mb-5 pb-lg-2"><a class="text-white-50 h2" href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a></p>
+                                <button type="submit" class="btn btn-outline-light btn-success btn-lg px-5 w-50">Entrar</button>
+                            </form>
+                        </div>
+                        <div>
+                            <p class="h3 mb-0">No tienes cuenta? <a href="{% url 'register' %}" class="text-white-50 fw-bold">Registrate aca!!</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="footer footer-distributed w-100" style="width: 100%;">
+    <div class="footer-left">
+        <p class="footer-links">
+            <a href="{% url 'home' %}">Productos </a>
+            |
+            <a href="{% url 'home' %}">Promociones </a>
+            |
+            <a href="{% url 'home' %}">Eventos</a>
+        </p>
+        <p class="footer-company-name">Creado por <strong>Grupo 2 Portafolio</strong> | Todos los derechos reservados</p>     
+    </div>
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Av.esquina blanca 261</span>
+                Maipu, Santiago</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+56 9 6653 9989</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="#">mundoairsoft20@gmail.com'</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>Acerca de la tienda</span>
+            <strong>MundoAirsoft</strong> es una tienda de artículos deportivos que marca tendencias, que ofrece productos de primera calidad y servicio personalizado al cliente.
+        </p>
+        <div class="footer-icons">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+    </div>
+</footer>
+{% endblock content %}
